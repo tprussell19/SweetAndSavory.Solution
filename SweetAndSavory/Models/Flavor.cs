@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
-namespace ProjectName.Models
+namespace SweetAndSavory.Models
 {
-  public class ParentObject
+  public class Flavor
   {
-    public ParentObject()
+    public Flavor()
     {
-      this.ChildObjects = new HashSet<ChildObject>();
+      this.Treats = new HashSet<Treat>();
     }
-    public int ParentObjectId { get; set; }
-    public string Name { get; set; }
-    public virtual ICollection<ChildObject> ChildObjects { get; set; }
+    public int FlavorId { get; set; }
+    public string Type { get; set; }
+    public virtual ICollection<FlavorTreat> JoinEntities { get; set; }
   }
 }

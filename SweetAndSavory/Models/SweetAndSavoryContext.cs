@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjectName.Models
+namespace SweetAndSavory.Models
 {
-  public class ProjectNameContext : DbContext
+  public class SweetAndSavoryContext : DbContext
   {
-    public virtual DbSet<ParentObject> ParentObjects { get; set; }
-    public DbSet<ChildObject> ChildObjects { get; set; }
+    public virtual DbSet<Flavor> Flavors { get; set; }
+    public DbSet<Treat> Treats { get; set; }
 
-    public ProjectNameContext(DbContextOptions options) : base(options) { }
+    public SweetAndSavoryContext(DbContextOptions options) : base(options) { }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
