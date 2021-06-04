@@ -35,8 +35,10 @@ namespace SweetAndSavory.Controllers
     }
     public ActionResult Details(int id)
     {
-      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      ViewBag.Treats = thisFlavor.Treats;
+      var thisFlavor = _db.Flavors
+          .Include(flavor => flavor.JoinEntities)
+          .ThenInclude(join => join.Machine)
+          .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
     [Authorize]
