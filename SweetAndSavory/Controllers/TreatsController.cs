@@ -1,9 +1,13 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using SweetAndSavory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SweetAndSavory.Controllers
 {
@@ -17,7 +21,7 @@ namespace SweetAndSavory.Controllers
 
     public ActionResult Index()
     {
-      List<Treat> model = _db.Treats.Include(treat => treat.Flavor).ToList();
+      List<Treat> model = _db.Treats.ToList();
       return View(model);
     }
 
@@ -40,7 +44,7 @@ namespace SweetAndSavory.Controllers
     {
       var thisTreat = _db.Treats
           .Include(treat => treat.JoinEntities)
-          .ThenInclude(join => join.Machine)
+          .ThenInclude(join => join.Flavor)
           .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }

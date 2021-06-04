@@ -1,18 +1,23 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using SweetAndSavory.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace SweetAndSavory.Controllers
 {
   public class FlavorsController : Controller
   {
     private readonly SweetAndSavoryContext _db;
-
-    public FlavorsController(SweetAndSavoryContext db)
+    private readonly UserManager<ApplicationUser> _userManager;
+    public FlavorsController(UserManager<ApplicationUser> userManager, SweetAndSavoryContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -41,7 +46,7 @@ namespace SweetAndSavory.Controllers
     {
       var thisFlavor = _db.Flavors
           .Include(flavor => flavor.JoinEntities)
-          .ThenInclude(join => join.Machine)
+          .ThenInclude(join => join.Treat)
           .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
