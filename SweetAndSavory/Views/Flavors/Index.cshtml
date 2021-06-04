@@ -2,18 +2,18 @@
   Layout = "_Layout";
 }
 
-@using ProjectName.Models;
+@using SweetAndSavory.Models;
 
-<h1>ParentObjects</h1>
+<h1>Flavors</h1>
 
 @if (@Model.Count == 0)
 {
-  <h3>No ParentObjects have been added yet!</h3>
+  <h3>No Flavors have been added yet!</h3>
 }
 
-@foreach (ParentObject parentObject in Model)
+@foreach (Flavor flavor in Model)
 {
-  <li>@Html.ActionLink($"{parentObject.SomeProperty}", "Details", new { id = parentObject.ParentObjectId})</li>
+  <li>@Html.ActionLink($"{flavor.SomeProperty}", "Details", new { id = flavor.FlavorId})</li>
 }
 
-<p>@Html.ActionLink("Add new parentObject", "Create")</p>
+<p>@Html.ActionLink("Add new flavor", "Create")</p>

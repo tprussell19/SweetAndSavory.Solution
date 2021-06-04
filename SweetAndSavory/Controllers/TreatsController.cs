@@ -1,72 +1,72 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ProjectName.Models;
+using SweetAndSavory.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ProjectName.Controllers
+namespace SweetAndSavory.Controllers
 {
-  public class ChildObjectsController : Controller
+  public class TreatsController : Controller
   {
-    private readonly ProjectNameContext _db;
-    public ChildObjectsController(ProjectNameContext db)
+    private readonly SweetAndSavoryContext _db;
+    public TreatsController(SweetAndSavoryContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
-      List<ChildObject> model = _db.ChildObjects.Include(childObject => childObject.ParentObject).ToList();
+      List<Treat> model = _db.Treats.Include(treat => treat.Flavor).ToList();
       return View(model);
     }
 
     public ActionResult Create()
     {
-      ViewBag.ParentObjectId = new SelectList(_db.ParentObjects, "ParentObjectId", "Name", new { @class = "custom-select" });
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name", new { @class = "custom-select" });
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(ChildObject childObject)
+    public ActionResult Create(Treat treat)
     {
-      _db.ChildObjects.Add(childObject);
+      _db.Treats.Add(treat);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
-      ChildObject thisChildObject = _db.ChildObjects.FirstOrDefault(childObject => childObject.ChildObjectId == id);
-      return View(thisChildObject);
+      Treat thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      return View(thisTreat);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisChildObject = _db.ChildObjects.FirstOrDefault(childObject => childObject.ChildObjectId == id);
-      ViewBag.ParentObjectId = new SelectList(_db.ParentObjects, "ParentObjectId", "Name");
-      return View(thisChildObject);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      return View(thisTreat);
     }
 
     [HttpPost]
-    public ActionResult Edit(ChildObject childObject)
+    public ActionResult Edit(Treat treat)
     {
-      _db.Entry(childObject).State = EntityState.Modified;
+      _db.Entry(treat).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
-      var thisChildObject = _db.ChildObjects.FirstOrDefault(childObject => childObject.ChildObjectId == id);
-      return View(thisChildObject);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      return View(thisTreat);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisChildObject = _db.ChildObjects.FirstOrDefault(childObject => childObject.ChildObjectId == id);
-      _db.ChildObjects.Remove(thisChildObject);
+      var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
+      _db.Treats.Remove(thisTreat);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

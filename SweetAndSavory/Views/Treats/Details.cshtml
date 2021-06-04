@@ -2,12 +2,12 @@
   Layout = "_Layout";
 }
 
-@model ProjectName.Models.ChildObject
+@model SweetAndSavory.Models.Treat
 
 <h2>@Html.DisplayFor(model => model.SomeProperty)</h2>
 <hr />
 <h5>@Html.DisplayNameFor(model => model.SomeOtherProperty): @Html.DisplayFor(model => model.SomeOtherProperty)</h5>
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit childObject", "Edit", new { id = Model.ChildObjectId })</p>
-<p>@Html.ActionLink("Delete childObject", "Delete", new { id = Model.ChildObjectId })</p>
+<p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete treat", "Delete", new { id = Model.TreatId })</p>

@@ -2,22 +2,22 @@
   Layout = "_Layout";
 }
 
-@using ProjectName.Models
-@model ProjectName.Models.ParentObject
+@using SweetAndSavory.Models
+@model SweetAndSavory.Models.Flavor
 
-<h2>ParentObject Details:</h2>
+<h2>Flavor Details:</h2>
 <hr />
 <h4>@Html.DisplayFor(model => model.SomeProperty)</h4>
 
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit parentObject", "Edit", new { id = Model.ParentObjectId })</p>
-<p>@Html.ActionLink("Delete parentObject", "Delete", new { id = Model.ParentObjectId })</p>
+<p>@Html.ActionLink("Edit flavor", "Edit", new { id = Model.FlavorId })</p>
+<p>@Html.ActionLink("Delete flavor", "Delete", new { id = Model.FlavorId })</p>
 
-@foreach (ChildObject childObject in ViewBag.ChildObjects)
+@foreach (Treat treat in ViewBag.Treats)
 {
-  if (childObject.ParentObjectId == Model.ParentObjectId)
+  if (treat.FlavorId == Model.FlavorId)
   {
-    <li>@Html.ActionLink($"{childObject.SomeProperty}", "Details", "ChildObjects", new { id = childObject.ChildObjectId})
+    <li>@Html.ActionLink($"{treat.SomeProperty}", "Details", "Treats", new { id = treat.TreatId})
 </li>
   }
 }
