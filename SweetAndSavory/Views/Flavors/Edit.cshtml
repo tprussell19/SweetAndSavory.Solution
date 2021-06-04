@@ -4,15 +4,15 @@
 
 @model SweetAndSavory.Models.Flavor
 
-<h2>Edit: @Html.DisplayFor(model => model.SomeProperty)</h2>
+<h2>Edit: @Html.DisplayFor(model => model.Type)</h2>
 <hr />
 
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.FlavorId)
 
-  @Html.LabelFor(model => model.SomeProperty, new {@class="form-label"})
-  @Html.EditorFor(model => model.SomeProperty, new {@class = "form-control", type="text", id="some-property"})
+  @Html.LabelFor(model => model.Type, new {@class="form-label"})
+  @Html.EditorFor(model => model.Type, new {@class = "form-control", type="text", id="type"})
 
   <input type="submit" value="Save Changes" class="btn btn-outline-warning" />
 }

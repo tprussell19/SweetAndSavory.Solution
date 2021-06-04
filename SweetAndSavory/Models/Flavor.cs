@@ -6,7 +6,7 @@ namespace SweetAndSavory.Models
   {
     public Flavor()
     {
-      this.Treats = new HashSet<Treat>();
+      this.JoinEntities = new HashSet<FlavorTreat>();
     }
     public int FlavorId { get; set; }
     public string Type { get; set; }
