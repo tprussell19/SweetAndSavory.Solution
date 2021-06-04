@@ -15,16 +15,19 @@ namespace SweetAndSavory.Controllers
     {
       _db = db;
     }
+
     public ActionResult Index()
     {
       List<Flavor> model = _db.Flavors.ToList();
       return View(model);
     }
+
     [Authorize]
     public ActionResult Create()
     {
       return View();
     }
+
     [Authorize]
     [HttpPost]
     public ActionResult Create(Flavor flavor)
@@ -33,6 +36,7 @@ namespace SweetAndSavory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     public ActionResult Details(int id)
     {
       var thisFlavor = _db.Flavors
@@ -41,12 +45,14 @@ namespace SweetAndSavory.Controllers
           .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
+
     [Authorize]
     public ActionResult Edit(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
+
     [Authorize]
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
@@ -55,12 +61,14 @@ namespace SweetAndSavory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     [Authorize]
     public ActionResult Delete(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisFlavor);
     }
+
     [Authorize]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
@@ -70,6 +78,7 @@ namespace SweetAndSavory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
     [Authorize]
     public ActionResult AddTreat(int id)
     {
@@ -77,6 +86,7 @@ namespace SweetAndSavory.Controllers
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View(selectedFlavor);
     }
+
     [Authorize]
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int TreatId)
@@ -96,6 +106,7 @@ namespace SweetAndSavory.Controllers
       }
       return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
+
     [Authorize]
     [HttpPost]
     public ActionResult DeleteTreat(int joinId)
