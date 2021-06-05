@@ -9,11 +9,26 @@
   <link rel="stylesheet" href="~/css/styles.css">
 </head>
 
-<body>
-  <main class="container">
-    @RenderBody()
-  </main>
-  @Html.Partial("Footer")
+<partial id="header">
+  @if (User.Identity.IsAuthenticated)
+  {
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+      <span>Hello @Html.ActionLink($"{@User.Identity.Name}", "Index", "Account")!</span>
+      <button class="btn btn-sm btn-danger" type="submit" value="Log out">Log out</button>
+    }
+  }
+</partial>
+
+<body class="container">
+
+  @RenderBody()
+
 </body>
+
+<partial id="footer">
+  @Html.ActionLink("Home", "Index", "Home") | @Html.ActionLink("Treats", "Index", "Treats") |
+  @Html.ActionLink("Flavors", "Index", "Flavors")
+</partial>
 
 </html>
