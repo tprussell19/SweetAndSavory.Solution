@@ -1,7 +1,52 @@
 @{
   Layout = "_Layout";
 }
+@using SweetAndSavory.Models;
+
 <h1>Welcome to Pierre's Sweet and Savory Treats!</h1>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Treats</h3>
+        @if (@ViewBag.Treats.Count == 0)
+        {
+          <p class="card-text">No treats have been added yet</p>
+        }
+        else
+        {
+          <ul class="card-text">
+            @foreach (Treat treat in @ViewBag.Treats)
+            {
+              <li>@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId })</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Flavors</h3>
+        @if (@ViewBag.Flavors.Count == 0)
+        {
+          <p class="card-text">No flavors have been added yet</p>
+        }
+        else
+        {
+          <ul class="card-text">
+            @foreach (Flavor flavor in @ViewBag.Flavors)
+            {
+              <li>@Html.ActionLink($"{flavor.Type}", "Details", "Machines", new { id = flavor.FlavorId })</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  </div>
+</div>
 
 <p>@Html.ActionLink("View all treats", "Index", "Treats")</p>
 <p>@Html.ActionLink("View all flavors", "Index", "Flavors")</p>
