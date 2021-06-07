@@ -9,13 +9,13 @@
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name, new {@class="form-label"})
-  @Html.TextBoxFor(model => model.Name, new {@class = "form-control", type="text", id="name"})
+  @Html.TextBoxFor(model => model.Name, new {@class = "form-control", type="text", id="name", required="required"})
 
   @Html.LabelFor(model => model.Description, new {@class="form-label"})
   @Html.TextBoxFor(model => model.Description, new {@class = "form-control", type="text", id="description"})
 
   @Html.LabelFor(model => model.Price, new {@class="form-label"})
-  @Html.TextBoxFor(model => model.Price, new {@class = "form-control", type="number", id="price"})
+  @Html.TextBoxFor(model => model.Price, new {@class = "form-control", type="number", id="price", required="required"})
 
   <input type="submit" value="Add Treat" class="btn btn-outline-success" />
 }
