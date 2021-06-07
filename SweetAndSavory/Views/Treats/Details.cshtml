@@ -12,7 +12,7 @@
 @if (@Model.JoinEntities.Count == 0)
 {
   <p>There are no flavors associated with this treat yet</p>
-  <p>@Html.ActionLink("Add one now?", "AddFlavor", new { id = Model.TreatId })</p>
+  <p>@Html.ActionLink("Add a flavor type to this treat?", "AddFlavor", new { id = Model.TreatId })</p>
 }
 else
 {
@@ -22,14 +22,17 @@ else
     {
       <li>
         @Html.ActionLink($"{join.Flavor.Type}", "Details", "Flavors", new { id = join.Flavor.FlavorId}) |
-        @using (Html.BeginForm("DeleteFlavor", "Flavors"))
-        {
-          @Html.Hidden("joinId", @join.FlavorTreatId)
-          <input type="submit" value="Delete" class="btn btn-danger" />
-        }
+        <span>
+          @using (Html.BeginForm("DeleteFlavor", "Flavors"))
+          {
+            @Html.Hidden("joinId", @join.FlavorTreatId)
+            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+          }
+        </span>
       </li>
     }
   </ul>
+  <p>@Html.ActionLink("Add another flavor type", "AddFlavor", new { id = Model.TreatId })</p>
 }
 
 <p>@Html.ActionLink("Back to treats", "Index")</p>
