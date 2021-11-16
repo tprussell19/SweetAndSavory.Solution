@@ -46,7 +46,7 @@ _This is a C#/ASP.NET Core application that allows a bakery owner named Pierre t
      }
      ```
      Note: Be sure to change `[YOUR-PASSWORD-GOES-HERE]` to your actual MySQL password.
-   - Run the command `dotnet ef migrations add Initial`. (If this command throws and error, you might have to run the command `dotnet tool install --global dotnet-ef` first.)
+   - Run the command `dotnet ef migrations add Initial`. (If this command throws an error, you might have to run the command `dotnet tool install --global dotnet-ef` first.)
    - Once the migration has been added, run the command `dotnet ef database update` to setup your database.
 5. To run the app:
    - Navigate to `SweetAndSavory.Solution/SweetAndSavory` in your command line

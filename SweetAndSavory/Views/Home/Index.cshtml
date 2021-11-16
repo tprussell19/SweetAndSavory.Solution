@@ -39,7 +39,7 @@
           <ul class="card-text">
             @foreach (Flavor flavor in @ViewBag.Flavors)
             {
-              <li>@Html.ActionLink($"{flavor.Type}", "Details", "Machines", new { id = flavor.FlavorId })</li>
+              <li>@Html.ActionLink($"{flavor.Type}", "Details", "Flavors", new { id = flavor.FlavorId })</li>
             }
           </ul>
         }
